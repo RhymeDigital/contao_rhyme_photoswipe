@@ -80,8 +80,9 @@ Rhyme.PhotoSwipe = {
 	                items.push(item);
 			                
 	                // Todo: Use this for caching this search as well as the image loading
-	                galleries[item.src]     	= galleries[item.src] || new Image();
-	                galleries[item.src].src 	= galleries[item.src].src || item.src;
+	                galleries[item.src]     		= galleries[item.src] || [];
+	                galleries[item.src][0]			= galleries[item.src][0] || new Image();
+	                galleries[item.src][0].src 		= galleries[0].src || item.src;
                 }
                 else {
 		            jQuery(selector).each(function(idx, a) {
@@ -91,13 +92,14 @@ Rhyme.PhotoSwipe = {
 							var item = createItem($a);
 			                items.push(item);
 			                
-			                if (el.data('data-photoswipe-image-id') == $a.data('data-photoswipe-image-id')) {
+			                if (el.data('photoswipe-image-id') == $a.data('photoswipe-image-id')) {
 				                startIndex = idx;
 			                }
 			                
 			                // Todo: Use this for caching this search as well as the image loading
-			                galleries[item.src]     	= galleries[item.src] || new Image();
-			                galleries[item.src].src 	= galleries[item.src].src || item.src;
+			                galleries[item.src]     		= galleries[item.src] || [];
+			                galleries[item.src][idx]		= galleries[item.src][idx] || new Image();
+			                galleries[item.src][idx].src 	= galleries[item.src][idx].src || item.src;
 		                }
 		            });
                 }
