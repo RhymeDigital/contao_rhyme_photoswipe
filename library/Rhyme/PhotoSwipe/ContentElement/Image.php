@@ -27,6 +27,11 @@ class Image extends \ContentImage
 	 */
 	protected function compile()
 	{
+		// Override some fields
+		$this->fullsize = '1';
+		$this->imageUrl = '';
+		
+		// Do parent compile
 		parent::compile();
 		
 		if (!is_file(TL_ROOT . '/' . $this->singleSRC))
