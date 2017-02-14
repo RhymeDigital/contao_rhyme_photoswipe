@@ -15,7 +15,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['photoswipe_image'] = str_replace(',caption', ',caption,photoswipe_gallery_id', $GLOBALS['TL_DCA']['tl_content']['palettes']['image']);
+$GLOBALS['TL_DCA']['tl_content']['palettes']['photoswipe_image'] = str_replace(array(',caption', ',fullsize', 'imageUrl'), array(',caption,photoswipe_gallery_id', '', ''), $GLOBALS['TL_DCA']['tl_content']['palettes']['image']);
 
 
 /**
