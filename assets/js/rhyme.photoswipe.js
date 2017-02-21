@@ -82,7 +82,7 @@ Rhyme.PhotoSwipe = {
 	                // Todo: Use this for caching this search as well as the image loading
 	                galleries[item.src]     		= galleries[item.src] || [];
 	                galleries[item.src][0]			= galleries[item.src][0] || new Image();
-	                galleries[item.src][0].src 		= galleries[0].src || item.src;
+	                galleries[item.src][0].src 		= galleries[item.src][0].src || item.src;
                 }
                 else {
 		            jQuery(selector).each(function(idx, a) {
