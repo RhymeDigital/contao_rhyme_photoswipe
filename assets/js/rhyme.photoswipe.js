@@ -50,7 +50,7 @@ Rhyme.PhotoSwipe = {
         
         var createItem = function($el){
             var $size = $el.data('photoswipe-image-size').split('x'),
-                caption = $el.data('data-photoswipe-image-title');
+                caption = $el.data('photoswipe-image-title');
             var item = {
                 src: $el.attr('href'),
                 w: $size[0],
@@ -68,7 +68,7 @@ Rhyme.PhotoSwipe = {
             jQuery('body').on('click', selector, function(ev) {
                 ev.preventDefault();
                 
-                var el = jQuery(ev.currentTarget),
+                var el = jQuery(ev.currentTarget).eq(0),
 		            items = [],
 		            startIndex = 0;
 	        
@@ -91,15 +91,16 @@ Rhyme.PhotoSwipe = {
 		                if (el.data('photoswipe-image-gallery') == $a.data('photoswipe-image-gallery')) {
 							var item = createItem($a);
 			                items.push(item);
+			                var currIdx = items.length - 1;
 			                
 			                if (el.data('photoswipe-image-id') == $a.data('photoswipe-image-id')) {
-				                startIndex = idx;
+				                startIndex = currIdx;
 			                }
 			                
 			                // Todo: Use this for caching this search as well as the image loading
-			                galleries[item.src]     		= galleries[item.src] || [];
-			                galleries[item.src][idx]		= galleries[item.src][idx] || new Image();
-			                galleries[item.src][idx].src 	= galleries[item.src][idx].src || item.src;
+			                galleries[item.src]     			= galleries[item.src] || [];
+			                galleries[item.src][currIdx]		= galleries[item.src][currIdx] || new Image();
+			                galleries[item.src][currIdx].src 	= galleries[item.src][currIdx].src || item.src;
 		                }
 		            });
                 }
@@ -108,7 +109,7 @@ Rhyme.PhotoSwipe = {
                     index: startIndex,
                     bgOpacity: 0.9,
                     showHideOpacity: true,
-                    closeOnScroll: false,
+                    closeOnScroll: false
                 };
 
                 var lightBox = new PhotoSwipe(pswp, PhotoSwipeUI_Default, items, options);
