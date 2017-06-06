@@ -61,6 +61,17 @@ Rhyme.PhotoSwipe = {
             }
             return item;
         };
+        
+        var findSrcInItems = function(src, items){
+            var varIndex = false;
+            for (var i = 0; i < items.length; i++) {
+	            if (items[i].src == src) {
+		            varIndex = i;
+		            break;
+	            }
+            }
+            return varIndex;
+        };
 
         if (pswp){
             
@@ -90,6 +101,7 @@ Rhyme.PhotoSwipe = {
 		                
 		                if (el.data('photoswipe-image-gallery') == $a.data('photoswipe-image-gallery')) {
 							var item = createItem($a);
+							if (findSrcInItems(item.src, items) !== false) return; // Todo: Need to test this logic in multiple situations...
 			                items.push(item);
 			                var currIdx = items.length - 1;
 			                
